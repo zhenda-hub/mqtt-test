@@ -13,6 +13,7 @@ topic = "test/topic"
 # 连接MQTT Broker
 # mqtt.CallbackAPIVersion.VERSION2
 # client = mqtt.Client(client_id=str(uuid.getnode()), clean_session=False)
+# TODO: uuid
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=str(uuid.getnode()), clean_session=False)
 client.connect(broker, port, 60)
 
@@ -45,8 +46,8 @@ client.loop_start()
 print('st')
 time.sleep(5)
 print('se')
-client.loop_stop()
 client.disconnect()
+client.loop_stop()
 
 res_list = client.user_data_get()
 print('res_list', res_list)

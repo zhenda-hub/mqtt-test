@@ -13,10 +13,18 @@ topic = "test/topic"
 # client = mqtt.Client()
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.connect(broker, port, 60)
+client.loop_start()
 
-# client.loop_start()
+
+def on_publish(*lst):
+    # breakpoint()
+    print('on_publish', lst)
+    # print("mid: " + str(mid))
+    
+client.on_publish = on_publish
 
 
+    
 # 发布消息
 def publish(client):
     msg_count = 0
@@ -45,5 +53,6 @@ for msg_count in range(10):
     else:
         print(f"Failed to send message to topic {topic}")
         
-# client.disconnect()
-# client.loop_stop()
+print('dis!!!!!!!!!!!!!!!!!!!')
+client.disconnect() # 断开和broker的连接
+client.loop_stop()
