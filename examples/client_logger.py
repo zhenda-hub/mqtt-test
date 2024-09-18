@@ -21,17 +21,18 @@ import context  # Ensures paho is in PYTHONPATH
 
 import paho.mqtt.client as mqtt
 
+
 logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # If you want to use a specific client id, use
 # mqttc = mqtt.Client("client-id")
 # but note that the client id must be unique on the broker. Leaving the client
 # id parameter empty will generate a random id for you.
 mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-
-logger = logging.getLogger(__name__)
 mqttc.enable_logger(logger)
 
+logger.info('fdsfdsfs, mqtt')
 mqttc.connect("mqtt.eclipseprojects.io", 1883, 60)
 mqttc.subscribe("$SYS/#", 0)
 
